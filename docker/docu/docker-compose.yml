@@ -1,0 +1,10 @@
+version: '3.9'
+
+services:
+  docu:
+    image: amerkurev/doku:${DOKU_VERSION:-latest}
+    ports:
+      - "${DOKU_PORT}:9090"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /:/hostroot:ro

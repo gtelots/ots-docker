@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  glances:
+    image: nicolargo/glances:${GLANCES_VERSION:-latest}
+    pid: host
+    privileged: true
+    environment:
+      - TZ=${TZ}
+      - "GLANCES_OPT=-C /glances/conf/glances.conf -w"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /run/user/1000/podman/podman.sock:/run/user/1000/podman/podman.sock:ro
+    ports:
+      - "${GLANCES_PORT:-61208}:61208"

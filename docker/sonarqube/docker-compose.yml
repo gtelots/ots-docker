@@ -1,0 +1,7 @@
+version: '3.9'
+
+services:
+  sonarqube:
+    image: sonarqube:${SONARQUBE_VERSION:-latest}
+    ports:
+      - ${SONARQUBE_PORT}:9000

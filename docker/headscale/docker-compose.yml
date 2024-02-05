@@ -1,0 +1,21 @@
+version: '3.9'
+
+volumes:
+  headscale-config:
+  headscale-keys:
+
+services:
+  headscale:
+    image: headscale/headscale:${HEADSCALE_VERSION:-latest}
+    command: headscale serve
+    volumes:
+      - headscale-config:/etc/headscale/
+      - headscale-keys:/var/lib/headscale/
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+
+  headscale-ui:
+    image: ghcr.io/gurucomputing/headscale-ui:${HEADSCALE_UI_VERSION:-latest}
+    ports:
+      - "9999:80"
